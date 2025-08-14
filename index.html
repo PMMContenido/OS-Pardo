@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OS Pardo - Broker de Salud Especializado</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.5.0/css/glide.core.min.css">
     <style>
         :root {
             --primary: #0056b3;
@@ -57,14 +56,6 @@
         .logo {
             display: flex;
             align-items: center;
-        }
-        
-        .logo img {
-            height: 50px;
-        }
-        
-        .logo-text {
-            margin-left: 10px;
         }
         
         .logo-text h1 {
@@ -147,32 +138,11 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-        
-        .hero-slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        
-        .hero-slide {
-            width: 100%;
-            height: 100%;
+            background-image: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 86, 179, 0.8)), 
+                              url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 86, 179, 0.8);
-            z-index: -1;
+            color: white;
         }
         
         .hero-content {
@@ -180,7 +150,6 @@
             margin: 0 auto;
             position: relative;
             z-index: 2;
-            color: white;
         }
         
         .hero h2 {
@@ -510,6 +479,16 @@
             color: #aaa;
         }
         
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
         /* Responsive */
         @media (max-width: 992px) {
             .hero h2 {
@@ -523,7 +502,29 @@
         
         @media (max-width: 768px) {
             .nav-menu {
-                display: none;
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                transition: left 0.3s;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .hero h2 {
@@ -542,12 +543,14 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Crect width='200' height='60' fill='%230056b3'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='white'%3EOS Pardo%3C/text%3E%3C/svg%3E" alt="OS Pardo Logo">
                 <div class="logo-text">
                     <h1>OS <span>Pardo</span></h1>
                 </div>
             </div>
-            <ul class="nav-menu">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
@@ -560,10 +563,6 @@
 
     <!-- Hero Section -->
     <section class="hero" id="inicio">
-        <div class="hero-slider">
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')"></div>
-        </div>
-        <div class="hero-overlay"></div>
         <div class="container hero-content">
             <h2>Expertos en Soluciones de Salud Personalizadas</h2>
             <p>En OS Pardo, conectamos a empresas y personas con las mejores opciones de salud, ofreciendo asesoramiento experto y soluciones a medida para cada necesidad.</p>
@@ -642,7 +641,7 @@
                 <a href="#contacto" class="btn" style="margin-top: 20px;">Conoce a nuestro equipo</a>
             </div>
             <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Equipo OS Pardo">
+                <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Equipo OS Pardo trabajando">
             </div>
         </div>
     </section>
@@ -748,11 +747,11 @@
                         </div>
                     </div>
                     <div class="map" style="margin-top: 30px; border-radius: 10px; overflow: hidden; height: 250px; background-color: var(--light-blue); display: flex; align-items: center; justify-content: center;">
-                        <img src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-l+0056b3(-58.3816,-34.6037)/-58.3816,-34.6037,12,0,0/400x250?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA" alt="Mapa de ubicación" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-l+0056b3(-58.3816,-34.6037)/-58.3816,-34.6037,12,0,0/400x250?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA" alt="Mapa de ubicación de OS Pardo" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form id="contactForm">
                         <div class="form-group">
                             <input type="text" placeholder="Nombre completo" required>
                         </div>
@@ -787,7 +786,9 @@
             <div class="footer-container">
                 <div class="footer-col">
                     <div class="logo" style="margin-bottom: 20px;">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Crect width='200' height='60' fill='white'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%230056b3'%3EOS Pardo%3C/text%3E%3C/svg%3E" alt="OS Pardo Logo" style="height: 40px;">
+                        <div class="logo-text">
+                            <h1 style="color: white;">OS <span style="color: var(--secondary);">Pardo</span></h1>
+                        </div>
                     </div>
                     <p style="margin-top: 15px; color: #ddd;">Expertos en soluciones de salud personalizadas para empresas y particulares.</p>
                     <div class="social-links">
@@ -833,18 +834,42 @@
     </footer>
 
     <script>
-        // Simple script to handle form submission
-        document.addEventListener('DOMContentLoaded', function() {
-            const forms = document.querySelectorAll('form');
-            
-            forms.forEach(form => {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-                    form.reset();
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if(navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
             });
         });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        if(contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('¡Gracias por tu mensaje! Un asesor se pondrá en contacto contigo pronto.');
+                this.reset();
+            });
+        }
     </script>
 </body>
 </html>
